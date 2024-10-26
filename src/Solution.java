@@ -1,25 +1,26 @@
+import java.util.Arrays;
+
 public class Solution {
 
 
-    public String mergeAlternately(String word1, String word2) {
+    public String longestCommonPrefix(String[] strs) {
 
-        StringBuilder merged = new StringBuilder();
+        StringBuilder common = new StringBuilder();
 
-        int i = 0;
+        Arrays.sort(strs);
 
-        while (i < word1.length() || i < word2.length()) {
+        String firstWord = strs[0];
+        String lastWord = strs[strs.length - 1];
 
-            if(i < word1.length()) {
-                merged.append(word1.charAt(i));
+        for (int i = 0; i < Math.min(firstWord.length(), lastWord.length()); i++) {
+
+            if (firstWord.charAt(i) == lastWord.charAt(i)) {
+                common.append(firstWord.charAt(i));
             }
-            if(i < word2.length()) {
-                merged.append(word2.charAt(i));
-            }
-            i++;
+
         }
 
-
-        return merged.toString();
+        return common.toString();
 
     }
 
