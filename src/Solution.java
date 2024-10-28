@@ -3,21 +3,38 @@ import java.util.Arrays;
 public class Solution {
 
 
-    public String longestCommonPrefix(String[] strs) {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
 
-        if (strs.length == 0) return "";
+        ListNode start = new ListNode();
+        ListNode cur = start;
 
-        String prefix = strs[0];
 
-        for (int i = 1; i < strs.length; i++) {
+        while (l1 != null && l2 != null) {
 
-            while(strs[i].indexOf(prefix) != 0) {
-                prefix = prefix.substring(0, prefix.length() - 1);
+            if (l1.val < l2.val) {
+
+                cur.next = l1;
+                l1 = l1.next;
+
+            } else {
+
+                cur.next = l2;
+                l2 = l2.next;
+
             }
+
+            cur = cur.next;
 
         }
 
-        return prefix;
+        if (l1 != null) {
+            cur.next = l1;
+        } else {
+            cur.next = l2;
+        }
+
+        return start.next;
+
 
     }
 
